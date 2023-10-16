@@ -1,6 +1,44 @@
 {% extends "base.html" %}
 {% block title %}Cliente{% endblock %}
 {% block content %}
+<style>
+    form {
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .acao-icon {
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .edit-icon {
+        color: #3498db;
+    }
+
+    .delete-icon {
+        color: #e74c3c;
+    }
+</style>
     <form action="{{ url_for('produto.formProduto') }}" method="GET">
         <h1>Produtos</h1>
         <button type="submit" name="formNovo">Novo Produto</button>
@@ -22,7 +60,7 @@
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fa-solid fa-trash"></i></td>
                 <td><i class="fas fa-trash"></i></td>
             </tr>
 

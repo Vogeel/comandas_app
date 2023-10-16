@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block style %}
+<style>
+
+    body {
+        background-color: grey;
+    }
+
+    img {
+        
+        display: block;
+        margin: auto;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="row">
+  <div class="col">
+    <h1>Página não encontrada!</h1>
+    <h3>Favor verificar se o caminho digitado esta correto.</h3>
+  </div>
+</div>
+<figure>
+  <img src="{{ url_for('static', filename='errosImg/Error-404.jpg') }}" alt="Erro 404" width="400" height="400" >
+</figure>
+<div class="row">
+  <div class="col">
+    <p>{{ erroHttp }}</p>
+  </div>
+</div>
+{% endblock %}

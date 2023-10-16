@@ -1,22 +1,73 @@
 {% extends "base.html" %}
 {% block title %}Produto{% endblock %}
 {% block content %}
+<style>
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+label {
+    text-align: left;
+    margin-bottom: 5px;
+    display: block;
+}
+
+button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+</style>
+
 <form name="formAdicionar" id="formAdicionar" action="" method="POST">
     <h1>Produto</h1>
-    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
     <label for="id">Código do produto</label>
+    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
     <br>
-    <input type="text" name="nome" id="nome" value="" placeholder="Nome Produto" maxlength="100" autofocus required>
     <label for="nome">Nome do produto</label>
+    <input type="text" name="nome" id="nome" value="" placeholder="Nome Produto" maxlength="100" autofocus required>
     <br>
-    <input type="text" name="descricao" id="descricao" value="" placeholder="descricao" maxlength="100" required>
     <label for="descricao">Descrição</label>
+    <input type="text" name="descricao" id="descricao" value="" placeholder="Descricao" maxlength="100" required>
     <br>
-    <input type="file" name="imagem" id="imagem" value="" placeholder="imagem" required>
     <label for="imagem">Imagem</label>
+    <input type="file" name="imagem" id="imagem" value="" placeholder="imagem" required>
     <br>
-    <input type="number" id="valorUnitario" name="valorUnitario" name="valor" step="0.01" min="0" placeholder="0.00" required>
     <label for="valorUnitario">Valor Unitário</label>
+    <input type="number" id="valorUnitario" name="valorUnitario" name="valor" step="0.01" min="0" placeholder="0.00" required>
     <br>
 
     

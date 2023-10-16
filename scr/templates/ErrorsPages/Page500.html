@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block style %}{% endblock %}
+{% block content %}
+
+<div class="row">
+  <div class="col">
+    <h1>Error!</h1>
+    <h3>http error 500 internal server error</h3>
+  </div>
+</div>
+<figure>
+  <img src="{{ url_for('static', filename='errosImg/Error-500.jpg') }}" alt="Erro 404" width="400" height="400" >
+</figure>
+<div class="row">
+  <div class="col">
+    <p>{{ erroHttp }}</p>
+  </div>
+</div>
+{% endblock %}
