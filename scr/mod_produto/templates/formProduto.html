@@ -52,10 +52,10 @@ button:hover {
 }
 </style>
 
-<form name="formAdicionar" id="formAdicionar" action="" method="POST">
+<form name="formAdicionar" id="formAdicionar" action="{{ url_for('produto.insert') }}" method="POST" enctype="multipart/form-data" >
     <h1>Produto</h1>
     <label for="id">Código do produto</label>
-    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
+    <input type="text" name="id" id="id" value="0" placeholder="Código" readonly>
     <br>
     <label for="nome">Nome do produto</label>
     <input type="text" name="nome" id="nome" value="" placeholder="Nome Produto" maxlength="100" autofocus required>
@@ -63,11 +63,11 @@ button:hover {
     <label for="descricao">Descrição</label>
     <input type="text" name="descricao" id="descricao" value="" placeholder="Descricao" maxlength="100" required>
     <br>
-    <label for="imagem">Imagem</label>
-    <input type="file" name="imagem" id="imagem" value="" placeholder="imagem" required>
+    <label for="foto">Imagem</label>
+    <input type="file" name="foto" accept="image/*" id="foto">
     <br>
-    <label for="valorUnitario">Valor Unitário</label>
-    <input type="number" id="valorUnitario" name="valorUnitario" name="valor" step="0.01" min="0" placeholder="0.00" required>
+    <label for="valor_unitario">Valor Unitário</label>
+    <input type="number" id="valor_unitario" name="valor_unitario" step="0.01" min="0" placeholder="0.00" required>
     <br>
 
     

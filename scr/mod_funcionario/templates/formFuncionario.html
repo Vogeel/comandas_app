@@ -9,7 +9,7 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     form {
         background-color: #ffffff;
         padding: 20px;
@@ -18,25 +18,26 @@
         width: 400px;
         text-align: center;
     }
-    
+
     h1 {
         font-size: 24px;
         margin-bottom: 20px;
     }
-    
-    input, button {
+
+    input,
+    button {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
         box-sizing: border-box;
     }
-    
+
     label {
         text-align: left;
         margin-bottom: 5px;
         display: block;
     }
-    
+
     button {
         background-color: #4caf50;
         color: #ffffff;
@@ -45,16 +46,16 @@
         cursor: pointer;
         border-radius: 4px;
     }
-    
+
     button:hover {
         background-color: #45a049;
     }
-    </style>
+</style>
 
-<form name="formAdicionar" id="formAdicionar" action="" method="POST">
+<form name="formAdicionar" id="formAdicionar" action="{{ url_for('funcionario.insert') }}" method="POST">
     <h1>Funcionário</h1>
     <label for="id">Código do funcionario</label>
-    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
+    <input type="text" name="id" id="id" value="0" placeholder="Código" readonly>
     <br>
     <label for="nome">Nome Funcionário</label>
     <input type="text" name="nome" id="nome" value="" placeholder="Nome Funcionário" maxlength="100" autofocus required>
@@ -81,6 +82,8 @@
     <label for="resenha">reSenha</label>
     <input type="password" name="resenha" id="resenha" placeholder="Confirme sua Senha" required>
     <br>
+    <span id="message"></span>
     <button type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i class='fas fa-save'></i> Salvar</button>
+    
 </form>
 {% endblock %}

@@ -44,31 +44,35 @@
         <h1>Clientes</h1>
         <button type="submit" name="formNovo">Novo Cliente</button>
     </form>
-    <table>
-        <thead>
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Telefone</th>
-                <th scope="col">Comprar Fiado</th>
-                <th scope="col">Dia fiado</th>
+                <th scope="col">Compra Fiado</th>
+                <th scope="col">Dia Fiado</th>
                 <th scope="col">Senha</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fas fa-trash"></i></td>
-            </tr>
-
+            {% if result %}
+            {% for row in result %}
+                <tr>
+                    <th scope="row"> {{ row['id_cliente'] }}</th>
+                    <td> {{ row['nome'] }}</td>
+                    <td> {{ row['cpf'] }}</td>
+                    <td> {{ row['telefone'] }}</td>
+                    <td> {{ row['comprar_fiado'] }}</td>
+                    <td> {{ row['dia_fiado'] }}</td>
+                    <td> {{ row['senha'] }}</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fas fa-trash"></i></td>
+                </tr>
+            {% endfor %}
+            {% endif %}
         </tbody>
-    </table>
+        
+        </table>
 {% endblock %}

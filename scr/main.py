@@ -1,10 +1,10 @@
 from flask import Flask
 # import blueprint criado
-from mod_funcionario.funcionario import bp_funcionario
 from mod_cliente.cliente import bp_cliente
 from mod_produto.produto import bp_produto
 from mod_index.index import bp_index
 from mod_error.error import bp_erro
+from mod_funcionario.funcionario import bp_funcionario
 
 app = Flask(__name__)
 

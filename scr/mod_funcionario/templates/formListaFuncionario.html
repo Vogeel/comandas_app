@@ -39,12 +39,14 @@
         color: #e74c3c;
     }
 </style>
+
+
     <form action="{{ url_for('funcionario.formFuncionario') }}" method="GET">
         <h1>Funcionários</h1>
         <button type="submit" name="formNovo">Novo Funcionário</button>
     </form>
-    <table>
-        <thead>
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
@@ -56,18 +58,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fas fa-trash"></i></td>
-            </tr>
-
+            {% if result %}
+            {% for row in result %}
+                <tr>
+                    <th scope="row"> {{ row['id_funcionario'] }}</th>
+                    <td> {{ row['nome'] }}</td>
+                    <td> {{ row['matricula'] }}</td>
+                    <td> {{ row['cpf'] }}</td>
+                    <td> {{ row['telefone'] }}</td>
+                    <td> {{ row['grupo'] }}</td>
+                    <td> {{ row['senha'] }}</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fas fa-trash"></i></td>
+                </tr>
+            {% endfor %}
+            {% endif %}
         </tbody>
-    </table>
+        
+        </table>
 {% endblock %}

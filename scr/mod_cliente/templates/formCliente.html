@@ -50,10 +50,10 @@
         background-color: #45a049;
     }
     </style>
-<form name="formAdicionar" id="formAdicionar" action="" method="POST">
+<form name="formAdicionar" id="formAdicionar" action="{{ url_for('cliente.insert') }}" method="POST">
     <h1>Cliente</h1>
     <label for="id">Código do cliente</label>
-    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
+    <input type="text" name="id" id="id" value="0" placeholder="Código" readonly>
     <br>
     <label for="nome">Nome Cliente</label>
     <input type="text" name="nome" id="nome" value="" placeholder="Nome Cliente" maxlength="100" autofocus required>
@@ -61,11 +61,11 @@
     <label for="cpf">CPF</label>
     <input type="text" name="cpf" id="cpf" value="" placeholder="CPF" maxlength="15" required>
     <br>
-    <label for="comprarFiadoCheckBox">Comprar Fiado</label>
-    <input type="checkbox" name="comprarFiadoCheckBox" id="comprarFiadoCheckBox" value="" placeholder="comprarFiadoCheckBox" required>
+    <label for="comprar_fiado">Comprar Fiado</label>
+    <input type="text" name="comprar_fiado" id="comprar_fiado" value="" placeholder="Comprar fiado" >
     <br>
-    <label for="dataComprarFiado">data Comprar Fiado</label>
-    <input type="date" name="dataComprarFiado" id="dataComprarFiado" value="" placeholder="dataComprarFiado" required>
+    <label for="dia_fiado">data Comprar Fiado</label>
+    <input type="text" name="dia_fiado" id="dia_fiado" value="" placeholder="dia_fiado" required>
     <br>
     <label for="telefone" class="form-label">Telefone</label>
     <input type="tel" name="telefone" id="telefone" value="" placeholder="Telefone" maxlength="15" required>

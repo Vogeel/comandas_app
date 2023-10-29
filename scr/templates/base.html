@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+   
 <head>
+
+    
+
+
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2/sweetalert2.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
-    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.min.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,15 +21,45 @@
         .important {
             color: #6495ED;
         }
-        
     </style>
 </head>
+
 <body>
     {% block menu %}{% endblock %}
     {% block content %}{% endblock %}
     {% block footer %}
-        &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">Vitor Vogel</a>.
+    &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">Vitor Vogel</a>
     {% endblock %}
-    {% block js %}{% endblock %}
+    {% block js %}
+
+    <script src="{{ url_for('static', filename='jquery-3.6.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery.maskedinput/scr/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+    <script src="https://kit.fontawesome.com/16af255963.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+    {% endblock %}
+    {% if request.args.get('msg'): %}
+    <script>
+        Swal.fire("Sucesso", "{{ request.args.get('msg') }}", "success");
+    </script>
+    {% elif request.args.get('msgErro'): %}
+    <script>
+        Swal.fire("Erro", "{{ request.args.get('msgErro') }}", "error");
+    </script>
+    <!-- render_template - msg ou msgErro -->
+    {% elif msg: %}
+    <script>
+        Swal.fire("ID {{ msg.id }}, {{ msg.msg }} ", "{{ msg }}", "success");
+    </script>
+    {% elif msgErro: %}
+    <script>
+        Swal.fire("{{ msgErro.msg if msgErro.msg else 'Erro' }}", "{{ msgErro }}", "error");
+    </script>
+    {% endif %}
+
 </body>
+
+
+
 </html>
