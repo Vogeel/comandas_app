@@ -60,9 +60,14 @@
                     <th scope="row"> {{ row['id_produto'] }}</th>
                     <td> {{ row['nome'] }}</td>
                     <td> {{ row['descricao'] }}</td>
-                    <td> {{ row['foto'] }}</td>
+                    <td><img src="{{ row.foto }}" width="100" id="myImg"></td>
                     <td> {{ row['valor_unitario'] }}</td>
-                    <td><i class="fas fa-edit"></i></td>
+                    <td>
+                        <form action="{{ url_for('produto.formEditProduto') }}" method="POST" name="formEdit{{ row['id_produto'] }}">
+                            <input type="hidden" name="id" value="{{ row['id_produto'] }}">
+                            <button type="submit" name="formEditProduto"> <i class="fas fa-edit"></i></button>
+                        </form>
+                    </td>
                     <td><i class="fas fa-trash"></i></td>
                 </tr>
             {% endfor %}
