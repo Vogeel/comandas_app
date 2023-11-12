@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Cliente{% endblock %}
+{# ajusta as variáveis conforme novo ou edit #}
+{% set id = result[0].id_cliente if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set cpf = result[0].cpf if result else '' %}
+{% set telefone = result[0].telefone if result else '' %}
+{% set comprar_fiado = result[0].comprar_fiado if result else '' %}
+{% set dia_fiado = result[0].dia_fiado if result else '' %}
+{% set senha = result[0].senha if result else '' %}
 {% block content %}
 <style>
     body {
@@ -50,31 +58,34 @@
         background-color: #45a049;
     }
     </style>
-<form name="formAdicionar" id="formAdicionar" action="{{ url_for('cliente.insert') }}" method="POST">
-    <h1>Cliente</h1>
+<form name="{{ 'formEditar' if result else 'formAdicionar' }}"
+id="{{ 'formEditar' if result else 'formAdicionar' }}"
+action="{{ url_for('cliente.edit') if result else url_for('cliente.insert') }}"
+method="POST">
+    <h1>Cliente - {{ "%s: %s" % ('Editar Registro', id) if result else 'Novo' }}</h1>
     <label for="id">Código do cliente</label>
-    <input type="text" name="id" id="id" value="0" placeholder="Código" readonly>
+    <input type="text" name="id" id="id" value="{{ id }}">
     <br>
     <label for="nome">Nome Cliente</label>
-    <input type="text" name="nome" id="nome" value="" placeholder="Nome Cliente" maxlength="100" autofocus required>
+    <input type="text" name="nome" id="nome" value="{{ nome }}" >
     <br>
     <label for="cpf">CPF</label>
-    <input type="text" name="cpf" id="cpf" value="" placeholder="CPF" maxlength="15" required>
+    <input type="text" name="cpf" id="cpf" value="{{ cpf }}" >
     <br>
     <label for="comprar_fiado">Comprar Fiado</label>
-    <input type="text" name="comprar_fiado" id="comprar_fiado" value="" placeholder="Comprar fiado" >
+    <input type="text" name="comprar_fiado" id="comprar_fiado" value="{{ comprar_fiado }}" >
     <br>
     <label for="dia_fiado">data Comprar Fiado</label>
-    <input type="text" name="dia_fiado" id="dia_fiado" value="" placeholder="dia_fiado" required>
+    <input type="text" name="dia_fiado" id="dia_fiado" value="{{ dia_fiado }}" >
     <br>
     <label for="telefone" class="form-label">Telefone</label>
-    <input type="tel" name="telefone" id="telefone" value="" placeholder="Telefone" maxlength="15" required>
+    <input type="tel" name="telefone" id="telefone" value="{{ telefone }}">
     <br>
     <label for="senha">Senha</label>
-    <input type="password" name="senha" id="senha" placeholder="Senha" required>
+    <input type="password" name="senha" id="senha" value="">
     <br>
     <label for="resenha">reSenha</label>
-    <input type="password" name="resenha" id="resenha" placeholder="Confirme sua Senha" required>
+    <input type="password" name="resenha" id="resenha" value="">
     <br>
     <button type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i class='fas fa-save'></i> Salvar</button>
 </form>

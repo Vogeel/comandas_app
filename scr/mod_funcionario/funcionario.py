@@ -79,18 +79,29 @@ def edit():
         grupo = request.form['grupo']
         senha = Funcoes.Encrypt(request.form['senha'])
         # monta o JSON para envio a API
-        payload = {'id_funcionario': id_funcionario, 'nome': nome, 'matricula': matricula, 'cpf': cpf, 'telefone': telefone, 'grupo':
-        grupo, 'senha': senha}
+
+        payload = {
+                    'id_funcionario': id_funcionario,
+                    'nome': nome,
+                    'matricula': matricula,
+                    'cpf': cpf,
+                    'telefone': telefone,
+                    'grupo': grupo,
+                    'senha': senha
+                }
+        
         # executa o verbo PUT da API e armazena seu retorno
         response = requests.put(ENDPOINT_FUNCIONARIO + id_funcionario, headers=HEADERS_API, json=payload)
+
         result = response.json()
+        
         if (response.status_code != 200 or result[1] != 200):
             raise Exception(result[0])
         return redirect(url_for('funcionario.formListaFuncionario', msg=result[0]))
     except Exception as e:
         return render_template('formListaFuncionario.html', msgErro=e.args[0])
     
-@bp_funcionario.route('/delete', methods=['POST'])
+@bp_funcionario.route('/delete', methods=['POST', 'GET'])
 def delete():
     try:
         # dados enviados via FORM

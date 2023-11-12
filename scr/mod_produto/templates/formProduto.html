@@ -60,7 +60,7 @@ button:hover {
 <form name="{{ 'formEditar' if result else 'formAdicionar' }}"
 id="{{ 'formEditar' if result else 'formAdicionar' }}"
 action="{{ url_for('produto.edit') if result else url_for('produto.insert') }}"
-method="POST">
+method="POST" enctype="multipart/form-data">
 <h1>Produto - {{ "%s: %s" % ('Editar Registro', id) if result else 'Novo' }}</h1>
     <label for="id">Código do produto</label>
     <input type="text" name="id" id="id" value="{{ id }}">
@@ -72,7 +72,7 @@ method="POST">
     <input type="text" name="descricao" id="descricao" value="{{ descricao }}" >
     <br>
     <label for="foto">Imagem</label>
-    <input type="file" name="foto" id="foto" value="{{ foto }}" >
+    <input type="file" name="foto" accept="image/*" id="foto" value="{{ foto }}">
     <br>
     <label for="valor_unitario" class="form-label">Valor unitário</label>
     <input type="number" name="valor_unitario" id="valor_unitario" value="{{ valor_unitario }}" step="0.01" min="0" placeholder="0.00">
