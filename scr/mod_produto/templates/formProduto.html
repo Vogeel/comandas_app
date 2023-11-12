@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Produto{% endblock %}
+{# ajusta as variáveis conforme novo ou edit #}
+{% set id = result[0].id_produto if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set descricao = result[0].descricao if result else '' %}
+{% set foto = result[0].foto if result else '' %}
+{% set valor_unitario = result[0].valor_unitario if result else '' %}
 {% block content %}
 <style>
 body {
@@ -51,26 +57,28 @@ button:hover {
     background-color: #45a049;
 }
 </style>
-
-<form name="formAdicionar" id="formAdicionar" action="{{ url_for('produto.insert') }}" method="POST" enctype="multipart/form-data" >
-    <h1>Produto</h1>
+<form name="{{ 'formEditar' if result else 'formAdicionar' }}"
+id="{{ 'formEditar' if result else 'formAdicionar' }}"
+action="{{ url_for('produto.edit') if result else url_for('produto.insert') }}"
+method="POST" enctype="multipart/form-data">
+<h1>Produto - {{ "%s: %s" % ('Editar Registro', id) if result else 'Novo' }}</h1>
     <label for="id">Código do produto</label>
-    <input type="text" name="id" id="id" value="0" placeholder="Código" readonly>
+    <input type="text" name="id" id="id" value="{{ id }}">
     <br>
-    <label for="nome">Nome do produto</label>
-    <input type="text" name="nome" id="nome" value="" placeholder="Nome Produto" maxlength="100" autofocus required>
+    <label for="nome">Nome Produto</label>
+    <input type="text" name="nome" id="nome" value="{{ nome }}" >
     <br>
-    <label for="descricao">Descrição</label>
-    <input type="text" name="descricao" id="descricao" value="" placeholder="Descricao" maxlength="100" required>
+    <label for="descricao">Descricão</label>
+    <input type="text" name="descricao" id="descricao" value="{{ descricao }}" >
     <br>
     <label for="foto">Imagem</label>
-    <input type="file" name="foto" accept="image/*" id="foto">
+    <input type="file" name="foto" accept="image/*" id="foto" value="{{ foto }}">
     <br>
-    <label for="valor_unitario">Valor Unitário</label>
-    <input type="number" id="valor_unitario" name="valor_unitario" step="0.01" min="0" placeholder="0.00" required>
+    <label for="valor_unitario" class="form-label">Valor unitário</label>
+    <input type="number" name="valor_unitario" id="valor_unitario" value="{{ valor_unitario }}" step="0.01" min="0" placeholder="0.00">
     <br>
-
-    
+    <span id="message"></span>
     <button type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i class='fas fa-save'></i> Salvar</button>
 </form>
+
 {% endblock %}
