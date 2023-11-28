@@ -24,7 +24,9 @@
 </head>
 
 <body>
-    {% block menu %}{% endblock %}
+    {% block menu %}
+    <a href="{{ url_for('login.logoff') }}"><i class="fas fa-door-open"></i> SAIR</a>
+    {% endblock %}
     {% block content %}{% endblock %}
     {% block footer %}
     &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">Vitor Vogel</a>

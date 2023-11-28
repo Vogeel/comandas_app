@@ -42,6 +42,9 @@
     }
 </style>
 <h1>HOME</h1>
+{% if 'login' in session %}
+Bem-vindo <b>{{ session['login'] }}</b>
+{% endif %}
 <p class="important">Seja bem vindo!</p>
     <ul>
 

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block style %}
+<style>
+body {
+    background-color: #f8f9fa;
+}
+
+form {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+</style>
+{% endblock %}
+
+
+{% block title %}Login{% endblock %}
+{% block menu %}
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <h2>Abc Bolinhas</h2>
+    </a>
+</nav>
+
+{% endblock %}
+{% block content %}
+<form action="{{ url_for('login.validaLogin') }}" method="post">
+    <input placeholder="CPF" name="usuario" type="text" value="abc">
+    <input placeholder="Senha" name="senha" type="password" value="Bolinhas">
+    <br>
+    <input type="submit" value="Login">
+
+</form>
+{% endblock %}
