@@ -88,7 +88,9 @@
 
         {% endif %}
     </tbody>
-
+    <form action="{{ url_for('funcionario.pdfTodos') }}" method="POST">
+        <input type="submit" value="Gerar PDF" formtarget="_blank" >
+    </form>
 </table>
 {% endblock %}
 

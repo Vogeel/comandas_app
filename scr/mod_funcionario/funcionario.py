@@ -3,7 +3,8 @@ from funcoes import Funcoes
 from mod_login.login import validaSessao
 from settings import HEADERS_API, ENDPOINT_FUNCIONARIO
 import requests
-
+from mod_funcionario.GerarPdf import PDF
+from flask import send_file
 
 
 bp_funcionario = Blueprint('funcionario', __name__, url_prefix="/funcionario", template_folder='templates')
@@ -124,3 +125,10 @@ def delete():
     # return render_template('formListaFuncionario.html',
         return jsonify(erro=True, msgErro=e.args[0])
 
+
+@bp_funcionario.route('/pdfTodos', methods=['POST'])
+@validaSessao
+def pdfTodos():
+    geraPdf = PDF()
+    geraPdf.listaTodos()
+    return send_file('pdfFuncionarios.pdf')

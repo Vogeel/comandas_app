@@ -3,6 +3,8 @@ from flask import Blueprint, jsonify, render_template, request, redirect, url_fo
 from settings import HEADERS_API, ENDPOINT_CLIENTE
 from mod_login.login import validaSessao
 from funcoes import Funcoes
+from mod_cliente.GerarPdf import PDF
+from flask import send_file
 
 
 bp_cliente = Blueprint('cliente', __name__, url_prefix="/cliente", template_folder='templates')
@@ -107,3 +109,10 @@ def delete():
     except Exception as e:
     # return render_template('formListaFuncionario.html',
         return jsonify(erro=True, msgErro=e.args[0])
+    
+@bp_cliente.route('/pdfTodos', methods=['POST'])
+@validaSessao
+def pdfTodos():
+    geraPdf = PDF()
+    geraPdf.listaTodos()
+    return send_file('pdfClientes.pdf')

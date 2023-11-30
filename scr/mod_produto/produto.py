@@ -2,6 +2,8 @@ import requests
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from settings import HEADERS_API, ENDPOINT_PRODUTO
 from mod_login.login import validaSessao
+from mod_produto.GerarPdf import PDF
+from flask import send_file
 
 import base64
 
@@ -109,3 +111,10 @@ def delete():
     except Exception as e:
     # return render_template('formListaFuncionario.html',
         return jsonify(erro=True, msgErro=e.args[0])
+
+@bp_produto.route('/pdfTodos', methods=['POST'])
+@validaSessao
+def pdfTodos():
+    geraPdf = PDF()
+    geraPdf.listaTodos()
+    return send_file('pdfProdutos.pdf')
