@@ -50,7 +50,7 @@ class PDF(FPDF):
                 pdf.cell(25, 5, str(row['nome']) , 0, 0, 'L')
                 pdf.cell(25, 5, str(row['cpf']), 0, 0, 'L')
                 pdf.cell(25, 5, str(row['telefone']), 0, 0, 'L')
-                pdf.cell(15, 5, str(row['comprar_fiado']), 0, 0, 'L')
+                pdf.cell(30, 5, str(row['comprar_fiado']), 0, 0, 'L')
                 pdf.cell(15, 5, str(row['dia_fiado']), 0, 1, 'L')
                 
         except Exception as e:
